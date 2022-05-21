@@ -6,20 +6,19 @@ $("#currentDay").append(todayDate);
 
 
 
-var saveButton = $(".saveBtn");
-saveButton.on("click", function(event) {
-    console.log(event);
-    // select the save button (floppy disc image)
-    var clickedButton = $(event.target);
+var buttonSaveEl = $(".saveBtn");
+var saveButton = $(document).ready(function() {
+    // add button save listener
+    buttonSaveEl.on("click", function() {
+        // get the nearby values
+        var textArea = $(this).siblings(".description").val();
+        var timeDiv = $(this).parent().attr("id");
 
-    // selecting the text box for the event
-    var textArea = clickedButton.prev();
-
-    // selecting the work hour
-    var timeDiv = textArea.prev();
-    // add to local storage
-
+        // save to local storage
+        localStorage.setItem(timeDiv, textArea);
+    })
 });
+
 
 var timeTracker = function() {
     // get the current hour
@@ -48,4 +47,18 @@ var timeTracker = function() {
     })
 
 };
+
+// get local storage items
+$("#9 .description").val(localStorage.getItem("9"));
+$("#10 .description").val(localStorage.getItem("10"));
+$("#11 .description").val(localStorage.getItem("11"));
+$("#12 .description").val(localStorage.getItem("12"));
+$("#13 .description").val(localStorage.getItem("13"));
+$("#14 .description").val(localStorage.getItem("14"));
+$("#15 .description").val(localStorage.getItem("15"));
+$("#16 .description").val(localStorage.getItem("16"));
+$("#17 .description").val(localStorage.getItem("17"));
+$("#18 .description").val(localStorage.getItem("18"));
+
+// call the function for getting the colors for the time-block
 timeTracker();
